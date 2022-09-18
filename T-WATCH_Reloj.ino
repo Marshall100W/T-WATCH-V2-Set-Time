@@ -19,7 +19,6 @@ int16_t x = 0;
 int16_t y = 0;
 char buf[128];
 char hora_minuto[7];
-unsigned long tmp = millis();
 int hora = 0;
 int minuto = 0;
 
@@ -40,9 +39,6 @@ void setup() {
   pantalla_ppal();
   snprintf(buf, sizeof(buf), "%s", ttgo->rtc->formatDateTime());
   ttgo->tft->drawString(buf, 15, 40, 7);
-  ttgo->tft->fillRect(159, 189, 80, 50, TFT_BLUE);
-  ttgo->tft->setTextColor(TFT_GREEN, TFT_BLUE);
-  ttgo->tft->drawString("Ajusta hora",  164, 204, 2);
 }
 
 
@@ -75,6 +71,9 @@ void pantalla_ppal() {
   ttgo->tft->drawString("Brillo:",  10, 225, 2);
   sprintf(buf, "%03d", brillo);
   ttgo->tft->drawString(buf, 55, 225, 2);
+  ttgo->tft->fillRoundRect(159, 218, 80, 19, 8, TFT_BLUE);
+  ttgo->tft->setTextColor(TFT_GREEN, TFT_BLUE);
+  ttgo->tft->drawString("Ajusta hora",  164, 219, 2);
 }
 
 void bateria() {
@@ -88,6 +87,7 @@ void bateria() {
   ttgo->tft->drawRoundRect(192, 3, 45, 20, 4, TFT_GREEN);
   ttgo->tft->drawRoundRect(193, 4, 43, 18, 4, TFT_GREEN);
   ttgo->tft->fillRect(236, 7, 5, 12, TFT_GREEN);
+  ttgo->tft->setTextColor(TFT_GREEN, TFT_BLACK);
   ttgo->tft->drawString(String(nivel_bateria) + "%", 197, 5, 2);
   if (axp->getBattPercentage() == 100) bat_cien = true;
   ttgo->tft->drawString(String(axp->getBattVoltage() / 1000) + " v", 195, 25, 2);
@@ -107,7 +107,7 @@ void captura_touch() {
     proc_brillo();
     limpia_touch();
   }
-  if (x > 179 && y > 179) {
+  if (x > 159 && y > 195) {
     proc_poner_en_hora();
     limpia_touch();
   }
@@ -144,14 +144,14 @@ void proc_poner_en_hora() {
   bool confirmado = false;
   unsigned long  tmp_confirmacion = millis();
   int contador = 0;
-  ttgo->tft->fillRect(159, 189, 80, 50, TFT_BLACK);
-  ttgo->tft->fillRect(90, 100, 70, 40, TFT_BLUE);
+  ttgo->tft->fillRoundRect(159, 218, 80, 19, 8, TFT_BLACK);
+  ttgo->tft->fillRoundRect(73, 110, 100, 19, 8, TFT_BLUE);
   ttgo->tft->setTextColor(TFT_GREEN, TFT_BLUE);
-  ttgo->tft->drawString("¿seguro?",  100, 110, 2);
-  ttgo->tft->fillRect(50, 150, 50, 50, TFT_BLUE);
-  ttgo->tft->fillRect(130, 150, 50, 50, TFT_BLUE);
-  ttgo->tft->drawString("SI",  70, 170, 2);
-  ttgo->tft->drawString("NO",  150, 170, 2);
+  ttgo->tft->drawString("¿Cambiar hora?",  79, 111, 2);
+  ttgo->tft->fillRoundRect(52, 150, 50, 22, 8, TFT_BLUE);
+  ttgo->tft->fillRoundRect(132, 150, 50, 22, 8, TFT_BLUE);
+  ttgo->tft->drawString("SI",  70, 152, 2);
+  ttgo->tft->drawString("NO",  150, 152, 2);
 
   while (1) {
     estado_touch = ttgo->getTouch(x, y);
@@ -170,7 +170,7 @@ void proc_poner_en_hora() {
       break;
     }
   }
-  ttgo->tft->fillRect(50, 100, 130, 110, TFT_BLACK);
+  ttgo->tft->fillRect(50, 110, 135, 70, TFT_BLACK);
   if (confirmado) {
     ttgo->tft->setTextColor(TFT_RED, TFT_BLACK);
     String fecha_hora = String(ttgo->rtc->formatDateTime());
@@ -178,7 +178,6 @@ void proc_poner_en_hora() {
     String hora_ = fecha_hora.substring(0, 2);
     String minuto_ = fecha_hora.substring(3, 5);
     sprintf(hora_minuto, "%02s:%02s", hora_, minuto_);
-    Serial.println("A ver");
     Serial.println(hora_);
     Serial.println(minuto_);
     Serial.println(hora_minuto);
@@ -237,9 +236,5 @@ void proc_poner_en_hora() {
       }
     }
   }
-  ttgo->tft->fillRect(159, 189, 80, 50, TFT_BLUE);
-  ttgo->tft->setTextColor(TFT_GREEN, TFT_BLUE);
-  ttgo->tft->drawString("Ajusta hora",  164, 204, 2);
 }
-
 ////////////////////
