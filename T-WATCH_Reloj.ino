@@ -91,7 +91,6 @@ void bateria() {
   ttgo->tft->drawString(String(nivel_bateria) + "%", 197, 5, 2);
   if (axp->getBattPercentage() == 100) bat_cien = true;
   ttgo->tft->drawString(String(axp->getBattVoltage() / 1000) + " v", 195, 25, 2);
-  ttgo->tft->drawString(String(axp->getBattVoltage() / 1000) + " v", 195, 25, 2);
 }
 
 
