@@ -4,7 +4,8 @@ A simple sketch to set time with the Touch Screen to the T-Watch. Inclding Batte
 
 - Set hour: Touch the lower-right area of the screen.
 - Set Brightness: Touch the lower-left area of the screen.
-    Brightness begins in 20 and increments by 50 until 170, ten goes to 0 (Brightnes Off) and again to 20. but can edit these values. hen it´s 0, skips the principal loop´s code.
+    Brightness begins in 20 and increments by 50 until 170, then goes to 0 (Brightnes Off) and again to 20. But you can edit these values.
+    When it´s 0, skips the principal loop´s code.
     When brightness at 0 (screen Off), touch the screen for 1 second until screen lights on again.
     Although brightness at , code is running. If you want to switch off the watch, press the lateral button for 6 seconds.
 
