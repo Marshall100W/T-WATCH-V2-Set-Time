@@ -1,5 +1,5 @@
 # T-WATCH-V2-Set-Time
-A simple sketch to set time with the Touch Screen to the T-Watch. Inclding Battery info and setting the Brightness.
+A simple sketch to set time with the Touch Screen to the T-Watch. Including Battery info and setting the Brightness.
 
 
 - Set hour: Touch the lower-right area of the screen.
@@ -11,5 +11,5 @@ A simple sketch to set time with the Touch Screen to the T-Watch. Inclding Batte
 
 NOTICE:
 - This sketch requires TTGO TWatch Library.
-- Remember select at the beginning the correct version of your TWATCH (line 2).
+- Remember select at the beginning, the correct version of your TWATCH (line 2).
 - I´m an amateur, and I´m sure the code can be improved a lot. These are my first steps with the T-WATCH, but it runs.
